@@ -458,3 +458,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .scenes{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}
 .orb{opacity:.5}
+
+/* contact page two-column layout, single column on tablet and phone */
+.detail.contactgrid{grid-template-columns:minmax(0,1fr) 380px}
+@media (max-width:1020px){.detail.contactgrid{grid-template-columns:minmax(0,1fr)}}

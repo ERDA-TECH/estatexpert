@@ -7,7 +7,7 @@ export default async function Contact(){
   const tz=await getTz();
   return(
     <div className="wrap"><div className="crumbs"><Link href="/">Home</Link> / Contact</div>
-      <div className="detail" style={{gridTemplateColumns:'minmax(0,1fr) 380px'}}>
+      <div className="detail contactgrid">
         <div><h2>Talk to our team</h2><p className="muted" style={{margin:'8px 0 18px',maxWidth:'56ch'}}>Send a message and we reply within one working day. Prefer to talk? Check the clocks and call when both of us are awake.</p>
           <ContactForm kind="contact" tz={tz} button="Send message" topics={['Buying a property','Selling a property','NRI services','Something else']}/></div>
         <aside className="stack">
