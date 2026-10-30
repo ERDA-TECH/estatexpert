@@ -17,7 +17,7 @@ export default function PropertyCard({p,cur,saved=false,i=0}){
     <article className="card" style={{'--i':Math.min(i,8)}}>
       <Link className="card-img" href={`/property/${p.id}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img loading="lazy" alt={`${p.type} in ${a.n}, sample illustration`} src={art(p,'exterior')}/>
+        <img loading="lazy" alt={p.photos?.length?`${p.type} in ${a.n}`:`${p.type} in ${a.n}, sample illustration`} src={p.photos?.length?p.photos[0]:art(p,'exterior')}/>
         <span className="tags"><span className="chip">{p.type}</span>{p.verified&&<span className="chip ok">Verified</span>}</span>
       </Link>
       <form action={toggleSave}><input type="hidden" name="id" value={p.id}/>

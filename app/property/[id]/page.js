@@ -25,7 +25,8 @@ export default async function PropertyPage({params}){
   const [similar,savedIds]=await Promise.all([repo.related(p,3),user?repo.savedIds():[]]);
   const saved=new Set(savedIds),on=saved.has(p.id);
   const a=AREAS[p.area],city=CITIES[a.c],st=STATES[city.s];
-  const views=viewsFor(p).map(([k,l])=>({src:art(p,k),label:l}));
+  const real=(p.photos||[]).length>0;
+  const views=real?p.photos.map((src,k)=>({src,label:'Photo '+(k+1),real:true})):viewsFor(p).map(([k,l])=>({src:art(p,k),label:l}));
   const kv=[['Type',p.type],['Size',sizeLabel(p)]];
   if(!isLand(p)||p.type==='Plot')kv.push(['Built-up / area',p.sqft.toLocaleString('en-IN')+' sq ft']);
   if(p.sqyd&&!isLand(p))kv.push(['Plot size',landLabel(p)]);
@@ -48,7 +49,7 @@ export default async function PropertyPage({params}){
             <form action={toggleSave} style={{marginTop:12}}><input type="hidden" name="id" value={p.id}/><button className="btn ghost sm" aria-pressed={on}>{on?'Saved ✓':'Save'}</button></form>
           </div>
           <Gallery views={views}/>
-          <p className="muted sm" style={{marginTop:-12}}>Illustrations stand in for real photos, video and a 360 tour.</p>
+          {!real&&<p className="muted sm" style={{marginTop:-12}}>Illustrations stand in for real photos, video and a 360 tour.</p>}
           <div><h3 style={{marginBottom:10}}>Property details</h3><dl className="kv">{kv.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></div>
           <div><h3 style={{marginBottom:8}}>About this property</h3><p>{p.desc}</p></div>
           {p.amen?.length>0&&<div><h3 style={{marginBottom:10}}>Amenities</h3><div className="amen">{p.amen.map(x=><span key={x}>{x}</span>)}</div></div>}
