@@ -462,3 +462,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
 /* contact page two-column layout, single column on tablet and phone */
 .detail.contactgrid{grid-template-columns:minmax(0,1fr) 380px}
 @media (max-width:1020px){.detail.contactgrid{grid-template-columns:minmax(0,1fr)}}
+
+/* header: name opens dashboard, sign out is a separate button */
+.btn.uname{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:520px){.tools{flex-wrap:wrap;justify-content:flex-end}}

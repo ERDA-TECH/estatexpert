@@ -17,7 +17,8 @@ export default async function Header(){
         <CurrencySelect value={cur}/>
         {user?(<>
           {user.role==='admin'&&<Link className="btn ghost sm" href="/admin">Admin</Link>}
-          <form action={signOut}><button className="btn sm" type="submit" title="Sign out">{(user.name||user.email||'Account').split(' ')[0]} · Sign out</button></form>
+          <Link className="btn sm uname" href="/account" title="Open my dashboard">{(user.name||user.email||'Account').split(' ')[0]}</Link>
+          <form action={signOut}><button className="btn ghost sm" type="submit">Sign out</button></form>
         </>):<Link className="btn sm" href="/login">Sign in</Link>}
       </div>
     </div></header>
